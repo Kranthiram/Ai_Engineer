@@ -81,7 +81,6 @@ LLM
       ↓
 Generated Response
 Example
-
 The application asks the LLM to act as a brand manager and generate a one-word name for a food application.
 
 Security Note
