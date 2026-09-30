@@ -25,4 +25,10 @@ htmlcov/
 Thumbs.db
 
 # Logs
+*.logweek1/day5/resumes/
+
+# Logs
 *.log
+
+# Resume files
+week1/day5/resumes/
