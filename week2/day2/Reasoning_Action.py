@@ -14,7 +14,7 @@ if not my_api_key:
 client=Groq(api_key=my_api_key)
 model="openai/gpt-oss-120b"
 
-
+#creating tools
 def get_product_price(product):
     if product == 'iPhone 17':
         return 1000
