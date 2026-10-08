@@ -60,14 +60,22 @@ Follow these rules:
 5. Wait until you receive an Observation.
 6. Then decide your next action.
 7. When the task is complete, give the Final Answer.
+8. You MUST use every available tool before giving the Final Answer.
+9. You MUST use the calculator tool for ALL arithmetic calculations.
+10. NEVER perform arithmetic yourself.
+11. If the user's question requires a calculation, you MUST call calculator.
+12. DO NOT give a Final Answer until all required tools have been used.
+
+For this shopping task:
+- First use get_product_price to get the product price.
+- Then use calculator to calculate the remaining money.
+- Only after receiving the calculator Observation, give the Final Answer.
 
 Format:
-
 Thought: what you need to do
 Action: tool_name(argument)
 
 When finished:
-
 Final Answer: your answer
 """
 
@@ -84,6 +92,8 @@ def run_agent(question):
         }
     ]
 
+    used_tools = set()
+
     for step in range(5):
 
         print("\n------------------")
@@ -96,6 +106,12 @@ def run_agent(question):
 
         # Agent has finished
         if "Final Answer:" in answer:
+            if "calculator" not in used_tools:
+                messages.append({
+                    "role": "user",
+                    "content": "You have not used the calculator tool yet. You MUST use calculator before giving the Final Answer."
+        })
+                continue
             break
 
 
@@ -116,6 +132,8 @@ def run_agent(question):
             if tool_name in tools:
                 tool = tools[tool_name]
                 observation = tool(tool_input)
+
+                used_tools.add(tool_name)
             else:
                 observation = "Tool not found"
 
@@ -137,7 +155,7 @@ def run_agent(question):
             sleep(5)
 
 prompt="""
-I have 5000 rupees. What is the price of an iphone 17?
-and how much money will I have left?
+I have 5649 rupees. What is the price of an iphone 17?
+and calculate how much money will I have left if i buy it?
 """
 run_agent(prompt)
