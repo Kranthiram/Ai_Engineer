@@ -4,6 +4,8 @@
 
 This project uses an LLM to extract skills from a candidate's resume and a job description, then compares the skills to generate a suitability score and verdict.
 
+This project built based on concept called PROMPT CHAINING
+
 ## Workflow
 
 ```text
