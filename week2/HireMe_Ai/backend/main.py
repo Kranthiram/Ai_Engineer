@@ -20,6 +20,6 @@ def home():
     resume_text = read_pdf(Path("Kranthi_Ram_Resume_SeptUpdate.pdf"))
     print(resume_text)
     return {
-        "message" : "Resume Parsed!"
+        "message" : "Resume Parsing successful!"
     }
 
