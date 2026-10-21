@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 from groq import Groq
+from time import sleep
 
 load_dotenv()
 my_api_key=os.getenv("GROQ_API_KEY")
@@ -20,9 +21,11 @@ message ={
 }
 
 messages = [message]
-# response = client.chat.completions.create(model  = model,messages = messages)
-# answer = response.choices[0].message.content
-# print(answer)
+response = client.chat.completions.create(model  = model,messages = messages)
+answer = response.choices[0].message.content
+print(answer)
+
+sleep(5)
 
 stream = client.chat.completions.create(model = model, messages = messages, stream = True)
 for chunk in stream:
